@@ -78,18 +78,18 @@ const LoginComponent: React.FC = () => {
                 <IconAppSvg />
               </div>
               <div className="my-10">
-                <div className="border-2 rounded-lg mb-2">
+                <div className="text-white rounded-lg mb-2 bg-[#F68300]">
                   <input
                     type="text"
-                    className="outline-none p-1"
+                    className="outline-none p-2 bg-"
                     placeholder="Email/Username"
                     onChange={(e) => setLogin(e.target.value)}
                   />
                 </div>
-                <div className="border-2 rounded-lg mt-2">
+                <div className="text-white rounded-lg mt-2 bg-[#F68300]">
                   <input
                     type="text"
-                    className=" outline-none p-1"
+                    className=" outline-none p-2"
                     placeholder="Password"
                     onChange={(e) => setPassword(e.target.value)}
                   />

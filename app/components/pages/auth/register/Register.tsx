@@ -90,7 +90,7 @@ const RegisterComponent: React.FC = () => {
               <div className=" rounded-lg mb-4 p-2 bg-[#FEEEC4]">
                 <input
                   type="text"
-                  className="outline-none p-1 w-full "
+                  className="outline-none p-2 w-full "
                   placeholder="Email"
                   onChange={(e) => setEmail(e.target.value)}
                 />
@@ -98,7 +98,7 @@ const RegisterComponent: React.FC = () => {
               <div className=" rounded-lg mt-4 p-2 bg-[#FEEEC4] ">
                 <input
                   type="text"
-                  className=" outline-none p-1 w-full"
+                  className=" outline-none p-2 w-full"
                   placeholder="NomorHp"
                   onChange={(e) => setPhoneNumber(e.target.value)}
                 />
@@ -107,7 +107,7 @@ const RegisterComponent: React.FC = () => {
               <div className=" rounded-lg mt-4 p-2 bg-[#FEEEC4]">
                 <input
                   type="text"
-                  className=" outline-none p-1 w-full"
+                  className=" outline-none p-2 w-full"
                   placeholder="Username"
                   onChange={(e) => setUserName(e.target.value)}
                 />
@@ -117,7 +117,7 @@ const RegisterComponent: React.FC = () => {
                 <KeySVG />
                 <input
                   type="text"
-                  className=" outline-none p-1 w-full"
+                  className=" outline-none p-2 w-full"
                   placeholder="Password"
                   onChange={(e) => setPasword(e.target.value)}
                 />
@@ -127,7 +127,7 @@ const RegisterComponent: React.FC = () => {
                 <KeySVG />
                 <input
                   type="text"
-                  className=" outline-none p-1 w-full"
+                  className=" outline-none p-2 w-full"
                   placeholder="Confirm Password"
                   onChange={(e) => setConfirmPassword(e.target.value)}
                 />
