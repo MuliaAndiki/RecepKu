@@ -9,18 +9,42 @@ import API from "@/app/utils/API";
 import { ModalProps } from "@/app/types/API";
 import Modal from "@/app/components/components/Modal/Modal";
 import { useRouter } from "next/navigation";
+import { FormRegister } from "@/app/types/form";
 
 const RegisterComponent: React.FC = () => {
-  const [userName, setUserName] = useState<string>();
-  const [phoneNumber, setPhoneNumber] = useState<string>();
-  const [email, setEmail] = useState<string>();
-  const [password, setPasword] = useState<string>();
+  const [form, setForm] = useState<FormRegister>({
+    userName: "",
+    phoneNumber: "",
+    confirmPassword: "",
+    email: "",
+    password: "",
+  });
+
   const [modalCall, setModalCall] = useState<ModalProps | null>();
-  const [confirmPassword, setConfirmPassword] = useState<string>();
+
   const router = useRouter();
 
   const handleRegister = async () => {
-    if (password !== confirmPassword) {
+    if (
+      !form.userName ||
+      !form.confirmPassword ||
+      !form.password ||
+      !form.email ||
+      !form.phoneNumber
+    ) {
+      setModalCall({
+        title: "Mohon Isi Semua Field",
+        deskripsi: "Silahkan Lengkapi Semua Data",
+        icon: "warning",
+        confirmButtonColor: "#FF7008",
+        confirmButtonText: "Ulangi",
+        onClose: () => {
+          setModalCall(null);
+        },
+      });
+      return;
+    }
+    if (form.password !== form.confirmPassword) {
       setModalCall({
         title: "Password Dan ConfirmPassword Tidak Sesuai",
         icon: "error",
@@ -28,16 +52,12 @@ const RegisterComponent: React.FC = () => {
         confirmButtonColor: "#FF7008",
         confirmButtonText: "Try Again",
       });
+      return;
     }
     try {
-      const res = await API.post(`/users/register`, {
-        email,
-        phoneNumber,
-        userName,
-        password,
-      });
+      const res = await API.post(`/users/register`, form);
       setModalCall({
-        title: "Selamat Anda Berhasil Melalikan Register",
+        title: "Selamat Anda Berhasil Melakukan Register",
         icon: "success",
         deskripsi: "Ayou Mulai Mencari Resep Favorite Mu DiRecepKu",
         confirmButtonColor: "#FF7008",
@@ -91,8 +111,14 @@ const RegisterComponent: React.FC = () => {
                 <input
                   type="text"
                   className="outline-none p-2 w-full "
+                  value={form.email}
                   placeholder="Email"
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={(e) =>
+                    setForm((prev) => {
+                      const newObj = { ...prev, email: e.target.value };
+                      return newObj;
+                    })
+                  }
                 />
               </div>
               <div className=" rounded-lg mt-4 p-2 bg-[#FEEEC4] ">
@@ -100,7 +126,13 @@ const RegisterComponent: React.FC = () => {
                   type="text"
                   className=" outline-none p-2 w-full"
                   placeholder="NomorHp"
-                  onChange={(e) => setPhoneNumber(e.target.value)}
+                  value={form.phoneNumber}
+                  onChange={(e) =>
+                    setForm((prev) => {
+                      const newObj = { ...prev, phoneNumber: e.target.value };
+                      return newObj;
+                    })
+                  }
                 />
               </div>
 
@@ -108,8 +140,14 @@ const RegisterComponent: React.FC = () => {
                 <input
                   type="text"
                   className=" outline-none p-2 w-full"
+                  value={form.userName}
                   placeholder="Username"
-                  onChange={(e) => setUserName(e.target.value)}
+                  onChange={(e) =>
+                    setForm((prev) => {
+                      const newObj = { ...prev, userName: e.target.value };
+                      return newObj;
+                    })
+                  }
                 />
               </div>
 
@@ -119,7 +157,13 @@ const RegisterComponent: React.FC = () => {
                   type="text"
                   className=" outline-none p-2 w-full"
                   placeholder="Password"
-                  onChange={(e) => setPasword(e.target.value)}
+                  value={form.password}
+                  onChange={(e) =>
+                    setForm((prev) => {
+                      const newObj = { ...prev, password: e.target.value };
+                      return newObj;
+                    })
+                  }
                 />
               </div>
 
@@ -129,7 +173,16 @@ const RegisterComponent: React.FC = () => {
                   type="text"
                   className=" outline-none p-2 w-full"
                   placeholder="Confirm Password"
-                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  value={form.confirmPassword}
+                  onChange={(e) =>
+                    setForm((prev) => {
+                      const newObj = {
+                        ...prev,
+                        confirmPassword: e.target.value,
+                      };
+                      return newObj;
+                    })
+                  }
                 />
               </div>
             </div>

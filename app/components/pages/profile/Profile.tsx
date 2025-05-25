@@ -5,6 +5,7 @@ import BackgroundProfileSVG from "../../svg/profile/Background";
 import { Pencil } from "lucide-react";
 import Image from "next/image";
 import { useHook } from "@/app/hooks/kontex";
+import ProfileDefault from "@/public/assest/profile.png";
 
 const ProfileComponent: React.FC = () => {
   const { currentUser } = useHook();
@@ -62,7 +63,11 @@ const ProfileComponent: React.FC = () => {
 
             <div className="relative w-[120px] h-[120px] rounded-full overflow-hidden self-start">
               <Image
-                src={currentUser?.user.profilePic}
+                src={
+                  currentUser?.user.profilePic
+                    ? currentUser.user.profilePic
+                    : ProfileDefault
+                }
                 alt="Profile"
                 fill
                 className="object-cover"

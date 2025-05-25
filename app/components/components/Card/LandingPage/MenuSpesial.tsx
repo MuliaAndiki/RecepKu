@@ -3,7 +3,7 @@ import { MenuSpesialTypesProps } from "@/app/components/props/Props.config";
 
 const MenuSpesial: React.FC<MenuSpesialTypesProps> = ({ data }) => {
   return (
-    <div className="bg-white w-full h-full flex justify-center items-center px-2 py-6 rounded-tr-4xl rounded-bl-4xl">
+    <div className="bg-white w-full h-full flex justify-center items-center px-2 py-6 rounded-tr-4xl rounded-bl-4xl hover:scale-[105%] duration-[0.3s] ">
       <div className="flex flex-col items-center justify-center">
         <Image
           src={data.image}
@@ -12,11 +12,9 @@ const MenuSpesial: React.FC<MenuSpesialTypesProps> = ({ data }) => {
           height={300}
           className="drop-shadow-xl/50"
         ></Image>
-        <div className="flex flex-col items-center justify-center">
-          <h1 className="font-extrabold my-4 text-[1.9rem] ">{data.title}</h1>
-          <span className="text-center w-[13vw] text-[1.6rem]">
-            {data.shortDescription}
-          </span>
+        <div className="flex flex-col items-center justify-center w-full">
+          <h1 className="font-extrabold my-4 ">{data.title}</h1>
+          <span className="text-center w-[13vw] ">{data.shortDescription}</span>
         </div>
       </div>
     </div>

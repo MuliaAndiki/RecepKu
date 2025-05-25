@@ -11,16 +11,21 @@ import { useHook } from "@/app/hooks/kontex";
 import { ModalProps } from "@/app/types/API";
 import { useRouter } from "next/navigation";
 import { UserTypes } from "@/app/types/API";
+import { FormLogin } from "@/app/types/form";
+
 const LoginComponent: React.FC = () => {
-  const [login, setLogin] = useState<string>();
-  const [password, setPassword] = useState<string>();
+  const [form, setForm] = useState<FormLogin>({
+    login: "",
+    password: "",
+  });
+
   const [modalCall, setModalCall] = useState<ModalProps | null>();
   const { setCurrentUser } = useHook();
   const router = useRouter();
 
   const handleLogin = async () => {
     try {
-      const res = await API.post("/users/login", { login, password });
+      const res = await API.post("/users/login", form);
       const userPayload: UserTypes = {
         token: res.data.token,
         user: res.data.data,
@@ -78,24 +83,36 @@ const LoginComponent: React.FC = () => {
                 <IconAppSvg />
               </div>
               <div className="my-10">
-                <div className="text-white rounded-lg mb-2 bg-[#F68300]">
+                <div className="rounded-lg mt-4 p-2 bg-[#FEEEC4] flex items-center gap-2">
                   <input
                     type="text"
                     className="outline-none p-2 bg-"
                     placeholder="Email/Username"
-                    onChange={(e) => setLogin(e.target.value)}
+                    value={form.login}
+                    onChange={(e) =>
+                      setForm((prev) => {
+                        const newObj = { ...prev, login: e.target.value };
+                        return newObj;
+                      })
+                    }
                   />
                 </div>
-                <div className="text-white rounded-lg mt-2 bg-[#F68300]">
+                <div className="rounded-lg mt-4 p-2 bg-[#FEEEC4] flex items-center gap-2">
                   <input
                     type="text"
                     className=" outline-none p-2"
                     placeholder="Password"
-                    onChange={(e) => setPassword(e.target.value)}
+                    value={form.password}
+                    onChange={(e) =>
+                      setForm((prev) => {
+                        const newObj = { ...prev, password: e.target.value };
+                        return newObj;
+                      })
+                    }
                   />
                 </div>
                 <div className="flex justify-end">
-                  <span className="text-end">Forgot Password</span>
+                  <span className="text-end ">Forgot Password</span>
                 </div>
               </div>
 

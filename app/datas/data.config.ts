@@ -1,9 +1,12 @@
 import { NavbarConfig, FooterConfig } from "../types/app.config";
-import footDumy from "@/public/assest/footDumy.png";
+import Karii from "@/public/assest/kariDumy.png";
 import rekomdummy from "@/public/assest/Rekomendasi.svg";
 import { MenuSpesialTypes, TestiMoniTypes, ResepTypes } from "../types/API";
 import ProfileDummy from "@/public/assest/profileDummy.png";
 import DonutDummy from "@/public/assest/Donut.svg";
+import Sepagety from "@/public/assest/Spaghetty.png";
+import SotoBanjar from "@/public/assest/SotoBanjar.png";
+import KentangGoreng from "@/public/assest/KentangGoreng.png";
 
 export const RekomendasiTypesData: ResepTypes[] = [
   {
@@ -74,26 +77,26 @@ export const NavbarDashboardConfigData: NavbarConfig[] = [
 ];
 export const MenuSpesialTypesData: MenuSpesialTypes[] = [
   {
-    image: footDumy,
+    image: Karii,
     title: "Kari Special",
     shortDescription:
       "Ayam empuk dengan kuah kental penuh rempah, gurihnya nendang banget!",
   },
   {
-    image: footDumy,
-    title: "Kari Special",
+    image: Sepagety,
+    title: "Spaghetty Bolognaise",
     shortDescription:
-      "Ayam empuk dengan kuah kental penuh rempah, gurihnya nendang banget!",
+      "Pasta kenyal disiram saus daging gurih yang melimpah, rasanya bikin susah berhenti.",
   },
   {
-    image: footDumy,
-    title: "Kari Special",
+    image: SotoBanjar,
+    title: "Soto Banjar",
     shortDescription:
-      "Ayam empuk dengan kuah kental penuh rempah, gurihnya nendang banget!",
+      "Kuah bening tapi kaya rasa, hangat, gurih, dan bikin nagih setiap suapan.",
   },
   {
-    image: footDumy,
-    title: "Kari Special",
+    image: KentangGoreng,
+    title: "Kentang Goreng",
     shortDescription:
       "Ayam empuk dengan kuah kental penuh rempah, gurihnya nendang banget!",
   },

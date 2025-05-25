@@ -3,6 +3,7 @@ import Link from "next/link";
 import IconRecepku from "../../svg/LandingPage/Icon";
 import { NavbarDashboardConfigData } from "@/app/datas/data.config";
 import { useHook } from "@/app/hooks/kontex";
+import Profile from "@/public/assest/profileDummy.png";
 import Image from "next/image";
 const NavbarDasboard = () => {
   const { currentUser } = useHook();
@@ -30,7 +31,11 @@ const NavbarDasboard = () => {
             <Link href="/profile">
               <div className="flex gap-2 items-center justify-center">
                 <Image
-                  src={currentUser?.user.profilePic}
+                  src={
+                    currentUser?.user.profilePic
+                      ? currentUser.user.profilePic
+                      : Profile
+                  }
                   alt=""
                   width={500}
                   height={50}

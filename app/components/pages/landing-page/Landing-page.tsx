@@ -11,7 +11,6 @@ import RameSVG from "../../svg/LandingPage/ramen";
 import Testimoni from "../../components/Card/LandingPage/TestiMoni";
 import { TestiMoniTypesData } from "@/app/datas/data.config";
 import Link from "next/link";
-import { useHook } from "@/app/hooks/kontex";
 const LandingPageComponent: React.FC = () => {
   return (
     <main className="h-full w-full ">
@@ -51,24 +50,24 @@ const LandingPageComponent: React.FC = () => {
       </div>
 
       {/* Section */}
-      <section className="w-screen h-screen bg-[#ECE7D4] z-3">
+      <section className="w-screen h-screen bg-[#ECE7D4] z-1">
         <main className="flex justify-center items-center flex-col">
           <div className="flex justify-center items-center flex-col">
             <h1 className="font-semibold text-[2rem]">
               Menu Spesial Favorit Semua Orang
             </h1>
-            <span className="font-light mt-2">
+            <span className="font-bold mt-2 text-[1.4rem]">
               Dari yang gurih, hangat, sampai yang renyah — semua hidangan ini
               dijamin bikin kamu pengen nambah terus!
             </span>
           </div>
 
-          <div className="w-full justify-center items-center flex">
-            {/* <div className="justify-around flex items-center gap-4 mt-20">
-              {allRecipes?.slice(0, 3).map((items, key) => (
+          <div className="w-full justify-center items-center flex ">
+            <div className="justify-around flex items-center gap-4 mt-20">
+              {MenuSpesialTypesData?.map((items, key) => (
                 <MenuSpesial key={key} data={items} />
               ))}
-            </div> */}
+            </div>
           </div>
         </main>
       </section>
