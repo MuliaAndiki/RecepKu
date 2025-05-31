@@ -8,40 +8,36 @@ import { useState } from "react";
 import API from "@/app/utils/API";
 import { useHook } from "@/app/hooks/kontex";
 import Modal from "@/app/components/components/Modal/Modal";
+import { FormEditProfile } from "@/app/types/form";
+import { ModalProps } from "@/app/types/API";
 
 const EditProfileComponent: React.FC = () => {
   const { currentUser } = useHook();
-
-  const [phoneNumber, setPhoneNumber] = useState<string>("");
-  const [userName, setUsername] = useState<string>("");
-  const [firstName, setFirstName] = useState<string>("");
-  const [lastName, setLastName] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
-  const [profilePic, setProfilePic] = useState<File | null>(null);
+  const [formEditProfile, setFormEditProfile] = useState<FormEditProfile>({
+    email: "",
+    firstName: "",
+    lastName: "",
+    phoneNumber: "",
+    userName: "",
+    profilePic: null,
+  });
+  const [modalCall, setModalCall] = useState<ModalProps | null>(null);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      setProfilePic(file);
+      setFormEditProfile((prev) => ({
+        ...prev,
+        profilePic: file,
+      }));
     }
   };
 
   const handleEditProfile = async () => {
     try {
-      const formData = new FormData();
-      formData.append("userName", userName);
-      formData.append("firstName", firstName);
-      formData.append("lastName", lastName);
-      formData.append("email", email);
-      formData.append("phoneNumber", phoneNumber);
-
-      if (profilePic) {
-        formData.append("profilePic", profilePic);
-      }
-
       const res = await API.put(
         `/users/profile/${currentUser?.user._id}`,
-        formData,
+        formEditProfile,
         {
           headers: {
             Authorization: `Bearer ${currentUser?.token}`,
@@ -79,8 +75,13 @@ const EditProfileComponent: React.FC = () => {
                     type="text"
                     placeholder="Masukkan nama depan"
                     className="border rounded-md p-2 w-full"
-                    onChange={(e) => setFirstName(e.target.value)}
-                    value={firstName}
+                    onChange={(e) =>
+                      setFormEditProfile((prev) => {
+                        const newObj = { ...prev, firstName: e.target.value };
+                        return newObj;
+                      })
+                    }
+                    value={formEditProfile.firstName}
                   />
                 </div>
                 <div className="flex-1">
@@ -89,8 +90,13 @@ const EditProfileComponent: React.FC = () => {
                     type="text"
                     placeholder="Masukkan nama belakang"
                     className="border rounded-md p-2 w-full"
-                    onChange={(e) => setLastName(e.target.value)}
-                    value={lastName}
+                    onChange={(e) =>
+                      setFormEditProfile((prev) => {
+                        const newObj = { ...prev, lastname: e.target.value };
+                        return newObj;
+                      })
+                    }
+                    value={formEditProfile.lastName}
                   />
                 </div>
               </div>
@@ -101,8 +107,13 @@ const EditProfileComponent: React.FC = () => {
                   type="text"
                   placeholder="Username"
                   className="border rounded-md p-2 w-full"
-                  onChange={(e) => setUsername(e.target.value)}
-                  value={userName}
+                  onChange={(e) =>
+                    setFormEditProfile((prev) => {
+                      const newObj = { ...prev, username: e.target.value };
+                      return newObj;
+                    })
+                  }
+                  value={formEditProfile.userName}
                 />
               </div>
 
@@ -112,8 +123,13 @@ const EditProfileComponent: React.FC = () => {
                   type="email"
                   placeholder="Email"
                   className="border rounded-md p-2 w-full"
-                  onChange={(e) => setEmail(e.target.value)}
-                  value={email}
+                  onChange={(e) =>
+                    setFormEditProfile((prev) => {
+                      const newObj = { ...prev, email: e.target.value };
+                      return newObj;
+                    })
+                  }
+                  value={formEditProfile.email}
                 />
               </div>
 
@@ -123,16 +139,21 @@ const EditProfileComponent: React.FC = () => {
                   type="text"
                   placeholder="Nomor telepon"
                   className="border rounded-md p-2 w-full"
-                  onChange={(e) => setPhoneNumber(e.target.value)}
-                  value={phoneNumber}
+                  onChange={(e) =>
+                    setFormEditProfile((prev) => {
+                      const newObj = { ...prev, phoneNumber: e.target.value };
+                      return newObj;
+                    })
+                  }
+                  value={formEditProfile.phoneNumber}
                 />
               </div>
             </div>
 
             <div className="relative w-[120px] h-[120px] rounded-full overflow-hidden self-start border">
-              {profilePic && (
+              {formEditProfile.profilePic && (
                 <Image
-                  src={URL.createObjectURL(profilePic)}
+                  src={URL.createObjectURL(formEditProfile.profilePic)}
                   alt="Preview"
                   layout="fill"
                   objectFit="cover"
@@ -156,7 +177,7 @@ const EditProfileComponent: React.FC = () => {
             </button>
             <button
               className="bg-orange-500 text-white px-6 py-2 rounded-md font-semibold"
-              onClick={handleEditProfile}
+              onClick={() => handleEditProfile()}
             >
               Save
             </button>

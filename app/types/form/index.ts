@@ -10,3 +10,12 @@ export interface FormRegister {
   password: string;
   confirmPassword: string;
 }
+
+export interface FormEditProfile {
+  phoneNumber: string;
+  userName: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  profilePic: File | null;
+}

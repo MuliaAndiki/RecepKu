@@ -1,12 +1,12 @@
 import { NavbarConfig, FooterConfig } from "../types/app.config";
-import Karii from "@/public/assest/kariDumy.png";
 import rekomdummy from "@/public/assest/Rekomendasi.svg";
 import { MenuSpesialTypes, TestiMoniTypes, ResepTypes } from "../types/API";
-import ProfileDummy from "@/public/assest/profileDummy.png";
-import DonutDummy from "@/public/assest/Donut.svg";
-import Sepagety from "@/public/assest/Spaghetty.png";
-import SotoBanjar from "@/public/assest/SotoBanjar.png";
-import KentangGoreng from "@/public/assest/KentangGoreng.png";
+import ProfileDummy from "@/public/assest/ProfileHd.svg";
+import DonutDummy from "@/public/assest/Donutt.svg";
+import Sepagety from "@/public/assest/Spagety.svg";
+import SotoBanjar from "@/public/assest/SotoBanjar.svg";
+import KentangGoreng from "@/public/assest/KentangGoreng.svg";
+import Karii from "@/public/assest/Kari.svg";
 
 export const RekomendasiTypesData: ResepTypes[] = [
   {
